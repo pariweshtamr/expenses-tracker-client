@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
+import { useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
 const Header = () => {
   const navigate = useNavigate()
-  const [user, setUser] = useState({})
+  const { user } = useSelector((state) => state.auth)
 
   const handleLogout = () => {
     sessionStorage.removeItem("user")
     navigate("/")
   }
 
-  useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("user"))
-    setUser(user)
-  }, [])
   return (
     <Navbar bg="primary" expand="md" varirant="dark">
       <Container>
@@ -34,7 +30,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link to="/" className="nav-link">
+                <Link to="/login" className="nav-link">
                   Login
                 </Link>
                 <Link to="/register" className="nav-link">

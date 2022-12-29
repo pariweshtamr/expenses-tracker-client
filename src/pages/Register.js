@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { Alert, Button, Form } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import Layout from "../components/layout/Layout"
 import { addUser } from "../utils/axiosHelper"
+import { useDispatch, useSelector } from "react-redux"
+import { registerAction } from "../redux/auth/auth.action"
 
 const initialState = {
   name: "",
@@ -12,6 +14,7 @@ const initialState = {
 }
 
 const Register = () => {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState(initialState)
   const [response, setResponse] = useState({})
 
@@ -27,16 +30,17 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const { data } = await addUser(formData)
-    setResponse(data)
+    // const { data } = await addUser(formData)
+    // setResponse(data)
+    dispatch(registerAction(formData))
     setFormData(initialState)
   }
 
   return (
     <Layout>
-      {response?.status === "success"
+      {/* {response?.status === "success"
         ? toast.success(response?.message, { toastId: "success" })
-        : toast.error(response?.message, { toastId: "error" })}
+        : toast.error(response?.message, { toastId: "error" })} */}
       <Form className="form-area" onSubmit={handleSubmit}>
         <h2 className="text-center">Register</h2>
         <hr />
@@ -79,7 +83,7 @@ const Register = () => {
         </Button>
 
         <div className="text-center">
-          Already have an account? <Link to="/">Login Now</Link>
+          Already have an account? <Link to="/login">Login Now</Link>
         </div>
       </Form>
     </Layout>

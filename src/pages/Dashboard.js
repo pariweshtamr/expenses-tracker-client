@@ -21,7 +21,7 @@ const Dashboard = () => {
         <TransactionForm getTransactions={fetchTransactions} />
       </div>
       <div className="my-4 text-light">
-        {trans.length} transaction(s) found!
+        {trans?.length} transaction(s) found!
       </div>
       <TransactionTable
         transactions={trans}

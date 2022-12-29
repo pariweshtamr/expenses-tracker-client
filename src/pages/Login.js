@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { Button, Form } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
 import Layout from "../components/layout/Layout"
-import { loginUser } from "../utils/axiosHelper"
+import { loginAction } from "../redux/auth/auth.action"
 
 const initialState = {
   email: "",
@@ -11,9 +11,9 @@ const initialState = {
 }
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [formData, setFormData] = useState(initialState)
-  const [response, setResponse] = useState({})
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -27,19 +27,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const { data } = await loginUser(formData)
-    setResponse(data)
-    if (data?.status === "success") {
-      navigate("/dashboard")
-      sessionStorage.setItem("user", JSON.stringify(data.user))
-    }
+    dispatch(loginAction(formData))
+    navigate("/")
+    // const { data } = await loginUser(formData)
+    // setResponse(data)
   }
   return (
     <Layout>
-      {response?.status === "success"
+      {/* {response?.status === "success"
         ? toast.success(response?.message, { toastId: "success" })
-        : toast.error(response?.message, { toastId: "error" })}
+        : toast.error(response?.message, { toastId: "error" })} */}
       <Form className="form-area" onSubmit={handleSubmit}>
         <h2 className="text-center">Welcome Back! Login</h2>
         <hr />

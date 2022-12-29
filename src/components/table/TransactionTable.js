@@ -18,7 +18,6 @@ const TransactionTable = ({ transactions, getTransactions }) => {
     }
   }
 
-  console.log(transactions)
   const handleOnAllSelect = (e) => {
     const checked = e.target.checked
 
@@ -31,7 +30,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
     }
   }
 
-  const total = transactions.reduce(
+  const total = transactions?.reduce(
     (acc, { type, amount }) =>
       type === "income" ? acc + amount : acc - amount,
     0
@@ -71,7 +70,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((item) => (
+          {transactions?.map((item) => (
             <tr key={item._id}>
               <td>
                 <Form.Check

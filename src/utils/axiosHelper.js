@@ -20,8 +20,7 @@ const getUserIdFromStorage = () => {
 // Send data to server to add to db
 export const addUser = async (formData) => {
   try {
-    const res = await axios.post(userUrl, formData)
-    return res
+    return await axios.post(userUrl, formData)
   } catch (error) {
     console.log(error)
     return {
