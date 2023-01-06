@@ -11,7 +11,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
 
     if (checked) {
       setItemToDelete([...itemToDelete, value])
-      setIsAllSelected(transactions.length === itemToDelete.length + 1)
+      setIsAllSelected(transactions?.length === itemToDelete.length + 1)
     } else {
       setItemToDelete(itemToDelete.filter((_id) => _id !== value))
       setIsAllSelected(false)
@@ -22,7 +22,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
     const checked = e.target.checked
 
     if (checked) {
-      setItemToDelete(transactions.map(({ _id }) => _id))
+      setItemToDelete(transactions?.map(({ _id }) => _id))
       setIsAllSelected(true)
     } else {
       setItemToDelete([])

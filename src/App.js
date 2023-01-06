@@ -8,12 +8,11 @@ import Register from "./pages/Register"
 function App() {
   const { user } = useSelector((state) => state.auth)
 
-  console.log(user)
   return (
     <>
       <BrowserRouter>
         <Routes path="/">
-          <Route index element={user._id ? <Dashboard /> : <Login />} />
+          <Route index element={user?._id ? <Dashboard /> : <Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Routes>
