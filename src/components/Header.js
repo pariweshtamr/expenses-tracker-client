@@ -15,6 +15,7 @@ const Header = () => {
     const user = JSON.parse(sessionStorage.getItem("user"))
     setUser(user)
   }, [])
+
   return (
     <Navbar bg="primary" expand="md" varirant="dark">
       <Container>
@@ -26,7 +27,7 @@ const Header = () => {
             {user?._id ? (
               <>
                 <div className="nav-link fw-bolder text-wraning">
-                  Welcome Back {user?.name.split(" ").slice(0, -1).join(" ")}!
+                  Welcome Back {user?.fName}!
                 </div>
                 <Link to="/" className="nav-link" onClick={handleLogout}>
                   Logout

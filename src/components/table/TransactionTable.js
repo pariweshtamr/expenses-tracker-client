@@ -11,19 +11,18 @@ const TransactionTable = ({ transactions, getTransactions }) => {
 
     if (checked) {
       setItemToDelete([...itemToDelete, value])
-      setIsAllSelected(transactions.length === itemToDelete.length + 1)
+      setIsAllSelected(transactions?.length === itemToDelete.length + 1)
     } else {
       setItemToDelete(itemToDelete.filter((_id) => _id !== value))
       setIsAllSelected(false)
     }
   }
 
-  console.log(transactions)
   const handleOnAllSelect = (e) => {
     const checked = e.target.checked
 
     if (checked) {
-      setItemToDelete(transactions.map(({ _id }) => _id))
+      setItemToDelete(transactions?.map(({ _id }) => _id))
       setIsAllSelected(true)
     } else {
       setItemToDelete([])
@@ -31,7 +30,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
     }
   }
 
-  const total = transactions.reduce(
+  const total = transactions?.reduce(
     (acc, { type, amount }) =>
       type === "income" ? acc + amount : acc - amount,
     0
@@ -71,7 +70,7 @@ const TransactionTable = ({ transactions, getTransactions }) => {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((item) => (
+          {transactions?.map((item) => (
             <tr key={item._id}>
               <td>
                 <Form.Check
