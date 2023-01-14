@@ -12,8 +12,11 @@ const Header = () => {
   }
 
   useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("user"))
-    setUser(user)
+    const userStr = sessionStorage.getItem("user")
+    if (userStr) {
+      const userObj = JSON.parse(userStr)
+      setUser(userObj)
+    }
   }, [])
 
   return (

@@ -30,9 +30,10 @@ const Login = () => {
 
     const { data } = await loginUser(formData)
     setResponse(data)
+
     if (data?.status === "success") {
       navigate("/dashboard")
-      sessionStorage.setItem("user", JSON.stringify(data.user))
+      sessionStorage.setItem("user", JSON.stringify(data.result))
     }
   }
   return (

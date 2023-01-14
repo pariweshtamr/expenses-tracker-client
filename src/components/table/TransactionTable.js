@@ -3,6 +3,7 @@ import { Button, Form, Table } from "react-bootstrap"
 import { deleteTransactions } from "../../utils/axiosHelper"
 
 const TransactionTable = ({ transactions, getTransactions }) => {
+  console.log(transactions)
   const [itemToDelete, setItemToDelete] = useState([])
   const [isAllSelected, setIsAllSelected] = useState(false)
 
